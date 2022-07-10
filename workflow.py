@@ -18,22 +18,41 @@ obsei_configuration = ObseiConfiguration(
 # source_config.cred_info = RedditCredInfo(username=env.REDDIT_USERNAME_JATIN, password=env.REDDIT_PASS_JATIN)
 
 # initialize reddit source config
-source_config = RedditConfig(
-   subreddits=["smallbusiness"], # List of subreddits
-   # Reddit account username and password
-   # You can also enter reddit client_id and client_secret or refresh_token
-   # Create credential at https://www.reddit.com/prefs/apps
-   # Also refer https://praw.readthedocs.io/en/latest/getting_started/authentication.html
-   # Currently Password Flow, Read Only Mode and Saved Refresh Token Mode are supported
-   cred_info=RedditCredInfo(
-       username=os.getenv("REDDIT_CLIENT_ID"),
-       password=os.getenv("REDDIT_CLIENT_SECRET")
-   ),
-   lookup_period="24h" # Lookup period from current time, format: `<number><d|h|m>` (day|hour|minute)
+# source_config = RedditConfig(
+#    subreddits=["smallbusiness"], # List of subreddits
+#    # Reddit account username and password
+#    # You can also enter reddit client_id and client_secret or refresh_token
+#    # Create credential at https://www.reddit.com/prefs/apps
+#    # Also refer https://praw.readthedocs.io/en/latest/getting_started/authentication.html
+#    # Currently Password Flow, Read Only Mode and Saved Refresh Token Mode are supported
+#    cred_info=RedditCredInfo(
+#        username=os.getenv("REDDIT_CLIENT_ID"),
+#        password=os.getenv("REDDIT_CLIENT_SECRET")
+#    ),
+#    lookup_period="24h" # Lookup period from current time, format: `<number><d|h|m>` (day|hour|minute)
+# )
+
+# # initialize reddit retriever
+# source = RedditSource()
+
+
+# Twitter source
+from obsei.source.twitter_source import TwitterCredentials, TwitterSource, TwitterSourceConfig
+
+# initialize twitter source config
+source_config = TwitterSourceConfig(
+   keywords=["looking for nocode"], # Keywords, @user or #hashtags
+   lookup_period="6h", # Lookup period from current time, format: `<number><d|h|m>` (day|hour|minute)
+   cred_info=TwitterCredentials(
+       # Enter your twitter consumer key and secret. Get it from https://developer.twitter.com/en/apply-for-access
+       consumer_key=os.getEnv("TWITTER_CONSUMER_KEY"),
+       consumer_secret=os.getEnv("TWITTER_CONSUMER_SECRET"),
+       bearer_token=os.getEnv("TWITTER_BEARER_TOKEN"),
+   )
 )
 
-# initialize reddit retriever
-source = RedditSource()
+# initialize tweets retriever
+source = TwitterSource()
 
 # Initialize Analyzer based on workflow
 analyzer = obsei_configuration.initialize_instance("analyzer")
