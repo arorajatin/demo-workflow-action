@@ -1,7 +1,7 @@
 analyzer:
   _target_: obsei.analyzer.dummy_analyzer.DummyAnalyzer
 analyzer_config:
-  _target_: obsei.analyzer.dummy_analyzer.DummyAnalyzer.DummyAnalyzerConfig
+  _target_: obsei.analyzer.dummy_analyzer.DummyAnalyzerConfig
 sink:
   _target_: obsei.sink.slack_sink.SlackSink
 sink_config:
