@@ -4,6 +4,8 @@ from obsei.configuration import ObseiConfiguration
 
 from obsei.source.reddit_source import RedditConfig, RedditSource, RedditCredInfo
 
+print(os.getenv("TEST_SECRET"))
+
 # Read workflow config file
 current_path = os.path.dirname(os.path.realpath(__file__))
 filename = "workflow.yml"
