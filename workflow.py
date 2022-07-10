@@ -1,6 +1,7 @@
 import os
 
 from obsei.configuration import ObseiConfiguration
+from obsei.source.reddit_source import RedditCredInfo
 
 # Read workflow config file
 current_path = os.path.dirname(os.path.realpath(__file__))
@@ -13,6 +14,8 @@ obsei_configuration = ObseiConfiguration(
 # Initialize Observer based on workflow
 source_config = obsei_configuration.initialize_instance("source_config")
 source = obsei_configuration.initialize_instance("source")
+
+source.cred_info = RedditCredInfo(username=env.REDDIT_USERNAME_JATIN, password=env.REDDIT_PASS_JATIN)
 
 # Initialize Analyzer based on workflow
 analyzer = obsei_configuration.initialize_instance("analyzer")
