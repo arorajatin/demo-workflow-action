@@ -59,8 +59,8 @@ analyzer_config = obsei_configuration.initialize_instance("analyzer_config")
 sink_config = obsei_configuration.initialize_instance("sink_config")
 sink = obsei_configuration.initialize_instance("sink")
 
-sink_config.slack_token = os.getenv("SLACK_TOKEN_OBSEI")
-sink_config.channel_id = os.getenv("SLACK_CHANNEL_OBSEI")
+sink_config.slack_token = os.getenv("SLACK_TOKEN")
+sink_config.channel_id = os.getenv("SLACK_CHANNEL_ID")
 
 # Execute Observer to fetch result
 source_response_list = source.lookup(source_config)
