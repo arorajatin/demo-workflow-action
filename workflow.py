@@ -45,9 +45,9 @@ source_config = TwitterSourceConfig(
    lookup_period="6h", # Lookup period from current time, format: `<number><d|h|m>` (day|hour|minute)
    cred_info=TwitterCredentials(
        # Enter your twitter consumer key and secret. Get it from https://developer.twitter.com/en/apply-for-access
-       consumer_key=os.getEnv("TWITTER_CONSUMER_KEY"),
-       consumer_secret=os.getEnv("TWITTER_CONSUMER_SECRET"),
-       bearer_token=os.getEnv("TWITTER_BEARER_TOKEN"),
+       consumer_key=os.getenv("TWITTER_CONSUMER_KEY"),
+       consumer_secret=os.getenv("TWITTER_CONSUMER_SECRET"),
+       bearer_token=os.getenv("TWITTER_BEARER_TOKEN"),
    )
 )
 
