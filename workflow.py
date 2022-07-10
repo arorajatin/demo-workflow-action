@@ -26,8 +26,8 @@ source_config = RedditConfig(
    # Also refer https://praw.readthedocs.io/en/latest/getting_started/authentication.html
    # Currently Password Flow, Read Only Mode and Saved Refresh Token Mode are supported
    cred_info=RedditCredInfo(
-       username=os.getenv("REDDIT_USERNAME_JATIN"),
-       password=os.getenv("REDDIT_PASS_JATIN")
+       username=os.getenv("REDDIT_CLIENT_ID"),
+       password=os.getenv("REDDIT_CLIENT_SECRET")
    ),
    lookup_period="24h" # Lookup period from current time, format: `<number><d|h|m>` (day|hour|minute)
 )
