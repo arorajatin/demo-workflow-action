@@ -9,7 +9,7 @@ sink_config:
 source:
   _target_: obsei.source.reddit_source.RedditSource
 source_config:
-  _target_: obsei.source.reddit_source.RedditSourceConfig
+  _target_: obsei.source.reddit_source.RedditConfig
   subreddits:
   - smallbusiness
   lookup_period: 1h
