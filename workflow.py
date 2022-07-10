@@ -15,7 +15,7 @@ obsei_configuration = ObseiConfiguration(
 source_config = obsei_configuration.initialize_instance("source_config")
 source = obsei_configuration.initialize_instance("source")
 
-source.cred_info = RedditCredInfo(username=env.REDDIT_USERNAME_JATIN, password=env.REDDIT_PASS_JATIN)
+source_config.cred_info = RedditCredInfo(username=env.REDDIT_USERNAME_JATIN, password=env.REDDIT_PASS_JATIN)
 
 # Initialize Analyzer based on workflow
 analyzer = obsei_configuration.initialize_instance("analyzer")
