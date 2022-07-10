@@ -1,7 +1,8 @@
 import os
 
 from obsei.configuration import ObseiConfiguration
-from obsei.source.reddit_source import RedditCredInfo
+
+from obsei.source.reddit_source import RedditConfig, RedditSource, RedditCredInfo
 
 # Read workflow config file
 current_path = os.path.dirname(os.path.realpath(__file__))
@@ -12,10 +13,27 @@ obsei_configuration = ObseiConfiguration(
 )
 
 # Initialize Observer based on workflow
-source_config = obsei_configuration.initialize_instance("source_config")
-source = obsei_configuration.initialize_instance("source")
+# source_config = obsei_configuration.initialize_instance("source_config")
+# source = obsei_configuration.initialize_instance("source")
+# source_config.cred_info = RedditCredInfo(username=env.REDDIT_USERNAME_JATIN, password=env.REDDIT_PASS_JATIN)
 
-source_config.cred_info = RedditCredInfo(username=env.REDDIT_USERNAME_JATIN, password=env.REDDIT_PASS_JATIN)
+# initialize reddit source config
+source_config = RedditConfig(
+   subreddits=["smallbusiness"], # List of subreddits
+   # Reddit account username and password
+   # You can also enter reddit client_id and client_secret or refresh_token
+   # Create credential at https://www.reddit.com/prefs/apps
+   # Also refer https://praw.readthedocs.io/en/latest/getting_started/authentication.html
+   # Currently Password Flow, Read Only Mode and Saved Refresh Token Mode are supported
+   cred_info=RedditCredInfo(
+       username=env.REDDIT_USERNAME_JATIN,
+       password=env.REDDIT_PASS_JATIN
+   ),
+   lookup_period="24h" # Lookup period from current time, format: `<number><d|h|m>` (day|hour|minute)
+)
+
+# initialize reddit retriever
+source = RedditSource()
 
 # Initialize Analyzer based on workflow
 analyzer = obsei_configuration.initialize_instance("analyzer")
