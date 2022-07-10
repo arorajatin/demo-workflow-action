@@ -1,1 +1,2 @@
-git@github.com:obsei/obsei.git
+obsei
+dateparser
