@@ -29,6 +29,7 @@ on:
 
 jobs:
   testing_workflow:
+    environment: staging
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
