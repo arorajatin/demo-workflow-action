@@ -45,11 +45,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          git clone https://github.com/obsei/obsei.git
-          cd obsei
-          pip install --editable .
-          cd ..
-          pip install dateparser
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
       - name: Execute workflow
         env:
