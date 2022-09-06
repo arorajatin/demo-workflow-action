@@ -28,26 +28,19 @@ on:
       
 
 jobs:
-  install_dependencies:
+  execute_workflow:
     environment: staging
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
         with:
-          python-version: 3.7
+          python-version: 3.9
           cache: 'pip'
           
       - name: Log python version
         run: |
             python -v
-            
-      - name: Cache
-        id: cache-python-env
-        uses: actions/cache@v2
-        with:
-          path: ${{ env.pythonLocation }}
-          key: cache-${{ hashFiles('requirements.txt') }}
 
       - name: Install dependencies
         run: |
@@ -55,24 +48,6 @@ jobs:
           # Todo keep resolved dependencies directly
           pip-compile --output-file=requirements.in requirements.txt
           pip install -r requirements.in
-
-  execute_workflow:
-    needs: install_dependencies
-    environment: staging
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      
-      - uses: actions/setup-python@v4
-        with:
-          python-version: 3.7
-          cache: 'pip'
-          
-      - name: Cache
-        uses: actions/cache@v2
-        with:
-          path: ${{ env.pythonLocation }}
-          key: cache-${{ hashFiles('requirements.txt') }}
           
       - name: Execute workflow
         env:
