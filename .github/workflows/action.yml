@@ -28,14 +28,14 @@ on:
       
 
 jobs:
-  testing_workflow:
+  execute_workflow:
     environment: staging
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
         with:
-          python-version: 3.7
+          python-version: 3.9
           cache: 'pip'
           
       - name: Log python version
@@ -44,8 +44,11 @@ jobs:
 
       - name: Install dependencies
         run: |
-          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-
+          pip install pip-tools
+          # Todo keep resolved dependencies directly
+          pip-compile --output-file=requirements.in requirements.txt
+          pip install -r requirements.in
+          
       - name: Execute workflow
         env:
           REDDIT_USER: ${{secrets.REDDIT_USERNAME_JATIN}}
